@@ -8,6 +8,10 @@ Parameters:
     MinLength: 1
     MaxLength: 15
     Description: This the name of the bucket
+  AllowedOrigins:
+    Type: List<String>
+    Default: '*'
+    Description: Origins allowed to request
 Resources:
   BucketS3New:
     Type: "AWS::S3::Bucket"
@@ -24,8 +28,7 @@ Resources:
               - PUT
               - HEAD 
               - DELETE
-            AllowedOrigins: 
-              - '*'
+            AllowedOrigins: !Ref AllowedOrigins
       WebsiteConfiguration:
         ErrorDocument: index.html
         IndexDocument: index.html
