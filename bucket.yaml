@@ -1,6 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: This is a S3 bucket where we are going to deploy the files of our application
-Metadata: 
 Parameters:
   BucketName:
     Type: String
@@ -9,30 +8,29 @@ Parameters:
     MinLength: 1
     MaxLength: 15
     Description: This the name of the bucket
-  AllowedOriginsWebsite:
-    Type: List<String>
-    Default: 
-      - andresbarreto
-      - cloudfront
-    AllowedPattern: ^[A-Za-z0-9]*$
-    MinLength: 1
-    MaxLength: 15
-    Description: List of origins the bucket can be connected to.
 Resources:
-  BucketS3:
-    Type: 'AWS::S3::Bucket'
-    Properties: 
+  BucketS3New:
+    Type: "AWS::S3::Bucket"
+    Properties:
       AccessControl: PublicRead
       BucketName: !Ref BucketName
-      CorsConfiguration: 
-        CorsRules: 
-          - AllowedMethods: 
-            - GET
-            - POST
-            - PUT
-            - HEAD 
-            - DELETE
-          - AllowedOrigins: !Ref AllowedOriginsWebsite
-      WebsiteConfiguration: 
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - POST
+              - PUT
+              - HEAD 
+              - DELETE
+            AllowedOrigins: 
+              - '*'
+      WebsiteConfiguration:
         ErrorDocument: index.html
         IndexDocument: index.html
+Outputs:
+  BucketName:
+    Value: !Ref BucketS3New
+    Export:
+      Name: BucketName
