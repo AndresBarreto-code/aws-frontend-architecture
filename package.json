@@ -1,0 +1,25 @@
+{
+  "name": "aws-frontend-architecture",
+  "version": "1.0.0",
+  "description": "This is a auto deploy and setup frontend distribution",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js",
+    "save": "",
+    "deploy": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresBarreto-code/aws-frontend-architecture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresBarreto-code/aws-frontend-architecture/issues"
+  },
+  "homepage": "https://github.com/AndresBarreto-code/aws-frontend-architecture#readme",
+  "devDependencies": {
+    "fs-extra": "^9.1.0"
+  }
+}
