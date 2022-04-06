@@ -14,7 +14,7 @@ Parameters:
     Description: Origins allowed to request
 Resources:
   BucketS3New:
-    Type: "AWS::S3::Bucket"
+    Type: AWS::S3::Bucket
     Properties:
       AccessControl: PublicRead
       BucketName: !Ref BucketName
@@ -32,6 +32,32 @@ Resources:
       WebsiteConfiguration:
         ErrorDocument: index.html
         IndexDocument: index.html
+  CloudFrontNew:
+    Type: AWS::CloudFront::Distribution
+    Properties: 
+      DistributionConfig: 
+        CacheBehaviors: 
+          - AllowedMethods: '*'
+          - PathPattern: '*'
+        CustomErrorResponses: 
+          - ErrorCode: 400
+            ResponseCode: 200
+            ResponsePagePath: index.html
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: index.html
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: index.html
+          - ErrorCode: 405
+            ResponseCode: 200
+            ResponsePagePath: index.html
+        DefaultRootObject: index.html
+        Enabled: yes
+        Origins: 
+          - DomainName: !Ref BucketName
+            Id: !Ref BucketName
+            PriceClass: PriceClass_All
 Outputs:
   BucketName:
     Value: !Ref BucketS3New

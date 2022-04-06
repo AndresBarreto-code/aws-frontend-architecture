@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This is a S3 bucket and CludFront Distribution
+Resources:
+  Type: "AWS::CloudFormation::Stack"
+  Poperties:
+    TemplateURL: 
+  Type: "AWS::CloudFormation::Stack"
+  Poperties:
+    TemplateURL: 
